@@ -1,4 +1,4 @@
-package twogames.ui;
+package cm.ui;
 
 import flash.geom.Point;
 import com.haxepunk.HXP;
@@ -6,7 +6,7 @@ import extendedhxpunk.ui.UIView;
 import extendedhxpunk.ext.EXTUtility;
 import extendedhxpunk.ext.EXTOffsetType;
 import extendedhxpunk.ext.EXTCamera;
-import twogames.MainScene;
+import cm.MainScene;
 
 /**
  * JVHudView

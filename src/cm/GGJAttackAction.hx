@@ -1,4 +1,4 @@
-package twogames;
+package cm;
 
 class GGJAttackAction extends GGJGameAction
 {

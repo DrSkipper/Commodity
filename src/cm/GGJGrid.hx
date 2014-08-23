@@ -1,4 +1,4 @@
-package twogames;
+package cm;
 
 import flash.geom.Point;
 import com.haxepunk.*;

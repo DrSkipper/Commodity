@@ -1,4 +1,4 @@
-package twogames.ui;
+package cm.ui;
 
 import flash.geom.Point;
 import extendedhxpunk.ui.UISmartStretchButton;

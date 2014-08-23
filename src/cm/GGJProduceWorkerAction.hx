@@ -1,4 +1,4 @@
-package twogames;
+package cm;
 
 class GGJProduceWorkerAction extends GGJGameAction
 {

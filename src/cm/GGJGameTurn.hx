@@ -1,6 +1,6 @@
-package twogames;
+package cm;
 
-import twogames.ui.*;
+import cm.ui.*;
 
 class GGJGameTurn
 {

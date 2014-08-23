@@ -1,10 +1,10 @@
-package twogames.ui;
+package cm.ui;
 
 import flash.geom.Point;
 import com.haxepunk.graphics.*;
 import extendedhxpunk.ext.*;
 import extendedhxpunk.ui.*;
-import twogames.*;
+import cm.*;
 
 class GGJGridSpaceItemsView extends JVExampleDialog
 {

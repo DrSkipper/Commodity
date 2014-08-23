@@ -1,11 +1,11 @@
-package twogames;
+package cm;
 
 import flash.geom.Point;
 import com.haxepunk.HXP;
 import com.haxepunk.graphics.*;
 import extendedhxpunk.ext.*;
 import extendedhxpunk.ui.*;
-import twogames.ui.*;
+import cm.ui.*;
 
 class MainScene extends EXTScene
 {

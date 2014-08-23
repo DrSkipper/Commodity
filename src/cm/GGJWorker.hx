@@ -1,4 +1,4 @@
-package twogames;
+package cm;
 
 import com.haxepunk.*;
 import com.haxepunk.graphics.*;

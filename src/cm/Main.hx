@@ -1,4 +1,4 @@
-package twogames;
+package cm;
 
 import com.haxepunk.Engine;
 import com.haxepunk.HXP;

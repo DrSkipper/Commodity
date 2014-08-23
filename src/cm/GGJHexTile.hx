@@ -1,10 +1,10 @@
-package twogames;
+package cm;
 
 import flash.geom.Point;
 import com.haxepunk.*;
 import com.haxepunk.graphics.*;
 import com.haxepunk.masks.*;
-import twogames.*;
+import cm.*;
 
 class GGJHexTile extends Entity
 {

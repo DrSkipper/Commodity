@@ -1,4 +1,4 @@
-package twogames.ui;
+package cm.ui;
 
 import com.haxepunk.graphics.Image;
 import extendedhxpunk.ui.UIImageView;
