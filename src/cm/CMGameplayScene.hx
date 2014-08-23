@@ -31,10 +31,18 @@ class CMGameplayScene extends EXTScene
 		var fullView:UIView = new UIView(EXTUtility.ZERO_POINT, new Point(CMConstants.PLAY_SPACE_WIDTH, CMConstants.PLAY_SPACE_HEIGHT));
 		fullView.addSubview(backButton);
 		this.staticUiController.rootView.addSubview(fullView);
+		
+		// Add assembly lines
+		_assemblyLine = new CMAssemblyLine(2, CMConstants.ASSEMBLY_LINE_LENGTH);
 	}
 	
 	public function backButtonCallback(args:Array<Dynamic>):Void
 	{
 		 HXP.scene = new MainScene();
 	}
+	
+	/**
+	 * Private
+	 */
+	var _assemblyLine:CMAssemblyLine;
 }

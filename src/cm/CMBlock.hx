@@ -11,6 +11,9 @@ import com.haxepunk.Mask;
  */
 class CMBlock
 {
+	public var gridSpace:Int;
+	public var size:Int;
+	
 	public function new(x:Float=0, y:Float=0) 
 	{
 		

@@ -22,4 +22,9 @@ class CMConstants
 	public static inline var GRID_SPACE_HEIGHT:Int = 10;
 
 	public static inline var BASE_OBJECT_GRID_SPACES = 8;
+	public static inline var ASSEMBLY_LINE_WIDTH = 200;
+	public static inline var ASSEMBLY_LINE_OBJECT_BUFFER = 1; // grid spaces
+	public static inline var ASSEMBLY_LINE_LENGTH = 5; // Number of base objects that fit in an assembly line
 }
+
+// L->C->$->C
