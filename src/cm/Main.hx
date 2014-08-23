@@ -3,13 +3,11 @@ package cm;
 import com.haxepunk.Engine;
 import com.haxepunk.HXP;
 import extendedhxpunk.ext.EXTConsole;
+import cm.local.CMLocalData;
+import cm.local.CMColorPalette;
 
 class Main extends Engine
 {
-
-	public static inline var kClearColor:Int = 0x772222;
-	public static inline var kProjectName:String = "CM";
-
 	function new()
 	{
 		super(CMConstants.PLAY_SPACE_WIDTH, CMConstants.PLAY_SPACE_HEIGHT, CMConstants.FPS, false);
@@ -18,8 +16,7 @@ class Main extends Engine
 	override public function init()
 	{
 		EXTConsole.initializeConsole();
-		HXP.screen.color = kClearColor;
-		HXP.screen.scale = 1;
+		HXP.screen.color = CMLocalData.sharedInstance().currentColorPalette.colorForIndex(CMColorPalette.INDEX_BACKGROUND_1).webColor;
 		
 		HXP.scene = new MainScene();
 		// JVSceneManager.sharedInstance().goToMainMenuScene();
