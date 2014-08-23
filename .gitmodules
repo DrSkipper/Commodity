@@ -1,0 +1,3 @@
+[submodule "lib/ExtendedHaxePunk"]
+	path = lib/ExtendedHaxePunk
+	url = git@github.com:jpfarmer/ExtendedHaxePunk.git
