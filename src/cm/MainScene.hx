@@ -9,12 +9,22 @@ import cm.ui.*;
 
 class MainScene extends EXTScene
 {
-	 public function new()
-	 {
+	public function new()
+	{
 		super();
-	 }
-
+	}
+	
 	override public function begin():Void
+	{
+		this.openMainMenu();
+	}
+	
+	public function playButtonCallback(args:Array<Dynamic>):Void
+	{
+		 HXP.scene = new CMGameplayScene();
+	}
+	
+	public function openMainMenu():Void
 	{
 		// UI
 		var titleDialog:JVExampleDialog = new JVExampleDialog(new Point(0, -200), new Point(250, 60));
@@ -27,11 +37,6 @@ class MainScene extends EXTScene
 
 		this.staticUiController.rootView.addSubview(titleDialog);
 		this.staticUiController.rootView.addSubview(_playButton);
-	}
-	
-	public function playButtonCallback(args:Array<Dynamic>):Void
-	{
-		// HXP.scene = new GGJGameplayScene();
 	}
 	
 	/**
