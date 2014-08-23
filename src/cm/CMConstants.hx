@@ -1,10 +1,10 @@
 package cm;
 
 /**
- * GGJConstants
+ * CMConstants
  * Static class containing game-tuning constants
  */
-class GGJConstants
+class CMConstants
 {
 #if flash
 	public static inline var FPS:Int = 60;
@@ -16,12 +16,10 @@ class GGJConstants
 	//TODO - fcole - Figure out how we're gonna handle different screen sizes
 	//NOTE - Screen size is set in application.xml
 	public static inline var PLAY_SPACE_WIDTH:Int = 1024;
-	public static inline var PLAY_SPACE_HEIGHT:Int = 768;
+	public static inline var PLAY_SPACE_HEIGHT:Int = 640;
 
-	//NOTE - Hex grid should have an odd number of columns
-	public static inline var HEX_GRID_COLUMNS:Int = 13;
-	public static inline var MIDDLE_COLUMN_INDEX:Int = 6;
+	public static inline var GRID_SPACE_WIDTH:Int = 10;
+	public static inline var GRID_SPACE_HEIGHT:Int = 10;
 
-	public static inline var GRID_SPACE_WIDTH:Int = 48;
-	public static inline var GRID_SPACE_HEIGHT:Int = 56;
+	public static inline var BASE_OBJECT_GRID_SPACES = 8;
 }

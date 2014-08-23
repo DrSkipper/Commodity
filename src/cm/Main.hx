@@ -8,11 +8,11 @@ class Main extends Engine
 {
 
 	public static inline var kClearColor:Int = 0x772222;
-	public static inline var kProjectName:String = "GGJ";
+	public static inline var kProjectName:String = "CM";
 
 	function new()
 	{
-		super(GGJConstants.PLAY_SPACE_WIDTH, GGJConstants.PLAY_SPACE_HEIGHT, GGJConstants.FPS, false);
+		super(CMConstants.PLAY_SPACE_WIDTH, CMConstants.PLAY_SPACE_HEIGHT, CMConstants.FPS, false);
 	}
 
 	override public function init()
@@ -38,5 +38,4 @@ class Main extends Engine
 	{
 		var app = new Main();
 	}
-
 }

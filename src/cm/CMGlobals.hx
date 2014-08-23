@@ -1,0 +1,6 @@
+package cm;
+
+class CMGlobals
+{
+
+}

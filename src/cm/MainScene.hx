@@ -18,7 +18,7 @@ class MainScene extends EXTScene
 	{
 		// UI
 		var titleDialog:JVExampleDialog = new JVExampleDialog(new Point(0, -200), new Point(250, 60));
-		var titleText:Text = new Text("Solidarity", 0, 0, { "size" : 22, "color" : 0xEEEEEE });
+		var titleText:Text = new Text("Commodity", 0, 0, { "size" : 22, "color" : 0xEEEEEE });
 		var titleLabel:UILabel = new UILabel(EXTUtility.ZERO_POINT, titleText);
 		titleDialog.addSubview(titleLabel);
 
@@ -31,7 +31,7 @@ class MainScene extends EXTScene
 	
 	public function playButtonCallback(args:Array<Dynamic>):Void
 	{
-		HXP.scene = new GGJGameplayScene();
+		// HXP.scene = new GGJGameplayScene();
 	}
 	
 	/**
