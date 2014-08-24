@@ -49,33 +49,18 @@ class CMAssemblyLine
 		bottomBlock.gridSpace = _length * CMConstants.BASE_OBJECT_GRID_SPACES - bottomBlock.size;
 		
 		var success:Bool = this.makeRoomForBlock(topBlock, true);
-		
 		_blocks.unshift(topBlock);
+		
 		success = this.makeRoomForBlock(bottomBlock, false) && success;
 		_blocks.push(bottomBlock);
 		
-		//if (success)
-		//{
-			//_blocks.unshift(topBlock);
-			//success = this.makeRoomForBlock(bottomBlock, false);
-			//
-			//if (success)
-				//_blocks.push(bottomBlock);
-		//}
-		//
-		//if (success)
-		//{
-			// Loop through blocks and call moveTo their positions
-			for (i in 0..._blocks.length)
-			{
-				_blocks[i].animateToPosition();
-			}
-		//}
-		//else
-		//{
-		if (!success) //
+		for (i in 0..._blocks.length)
+		{
+			_blocks[i].animateToPosition();
+		}
+		
+		if (!success)
 			this.killLine();
-		//}
 	}
 	
 	// Returns false if room cannot be made
@@ -153,10 +138,7 @@ class CMAssemblyLine
 			{
 				var newGridSpace:Int = block.gridSpace + block.size;
 				if (newGridSpace >= _length * CMConstants.BASE_OBJECT_GRID_SPACES)
-				{
-					trace("fuuuuu");
 					return false;
-				}
 				else
 					collidingBlock.gridSpace = newGridSpace;
 			}
@@ -164,10 +146,7 @@ class CMAssemblyLine
 			{
 				var newGridSpace:Int = block.gridSpace - collidingBlock.size;
 				if (newGridSpace < 0)
-				{
-					trace("shiiiii");
 					return false;
-				}
 				else
 					collidingBlock.gridSpace = newGridSpace;
 			}
