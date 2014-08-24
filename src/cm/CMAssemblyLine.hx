@@ -97,7 +97,6 @@ class CMAssemblyLine
 			// First check if we can combine with this block (it's the same type)
 			if (block.blockType == collidingBlock.blockType)
 			{
-				trace("ok");
 				if (bubbleDown)
 				{
 					++block.level;
