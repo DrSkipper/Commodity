@@ -28,6 +28,7 @@ class CMConstants
 	
 	public static inline var BLOCK_TYPES:Int = 3;
 	public static inline var BLOCK_SPAWN_COOLDOWN:Float = 3.0;
+	public static inline var BLOCK_TAP_COOLDOWN:Float = 0.8;
 }
 
 // L->C->$->C

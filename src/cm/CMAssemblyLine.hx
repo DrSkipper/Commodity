@@ -100,7 +100,7 @@ class CMAssemblyLine
 			{
 				if (bubbleDown)
 				{
-					++block.level;
+					block.level += collidingBlock.level;
 					
 					if (block.gridSpace + block.size > _length * CMConstants.BASE_OBJECT_GRID_SPACES)
 						return false;
@@ -108,7 +108,7 @@ class CMAssemblyLine
 				else
 				{
 					var oldSize:Int = block.size;
-					++block.level;
+					block.level += collidingBlock.level;
 					var newSize:Int = block.size;
 					block.gridSpace -= newSize - oldSize;
 					
@@ -136,6 +136,13 @@ class CMAssemblyLine
 			// Otherwise, continue bubbling blocks up or down to make room
 			if (bubbleDown)
 			{
+				//var blockStart:Int = block.gridSpace <= collidingBlock.gridSpace ? block.gridSpace : collidingBlock.gridSpace;
+				//var blockEnd:Int = block.size <= collidingBlock.size ? block.size : collidingBlock.size;
+				//var newGridSpace:Int = cast Math.max(cast (block.gridSpace + block.size), cast (blockStart + blockEnd));
+				//var blockEnd:Int = block.gridSpace + block.size;
+				//var collidingBlockEnd:Int = collidingBlock.gridSpace + collidingBlock.size;
+				//var newGridSpace:Int = blockEnd <= collidingBlockEnd ? blockEnd : collidingBlockEnd;
+				//var newGridSpace:Int = block.gridSpace + collidingBlock.size;
 				var newGridSpace:Int = block.gridSpace + block.size;
 				if (newGridSpace >= _length * CMConstants.BASE_OBJECT_GRID_SPACES)
 					return false;
@@ -144,7 +151,11 @@ class CMAssemblyLine
 			}
 			else
 			{
+				//var blockStart:Int = block.gridSpace >= collidingBlock.gridSpace ? block.gridSpace : collidingBlock.gridSpace;
+				//var blockEnd:Int = block.size <= collidingBlock.size ? block.size : collidingBlock.size;
+				//var newGridSpace:Int = cast Math.min(cast (blockStart - 1), cast (blockStart - blockEnd));
 				var newGridSpace:Int = block.gridSpace - collidingBlock.size;
+				//var newGridSpace:Int = block.gridSpace - 1;
 				if (newGridSpace < 0)
 					return false;
 				else
@@ -199,8 +210,8 @@ class CMAssemblyLine
 			var block:CMBlock = _blocks[i];
 			if (block.sprite == entity)
 			{
-				block.consume();
 				_blocks.remove(block);
+				block.consume();
 				break;
 			}
 		}

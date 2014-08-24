@@ -40,17 +40,24 @@ class CMGameplayScene extends EXTScene
 		_assemblyLine.spawnNewBlocks();
 		
 		_spawnTimer = EXTTimer.createTimer(CMConstants.BLOCK_SPAWN_COOLDOWN, true, spawnTimerCallback);
+		_tapCooldownTimer = EXTTimer.createTimer(CMConstants.BLOCK_TAP_COOLDOWN, true, tapTimerCallback);
 	}
 	
 	override public function update():Void
 	{
 		super.update();
 		
-		if (Input.mousePressed)
+		if (!_tapCooldown && Input.mousePressed)
 		{
 			var clickedEntity:Entity = this.collidePoint("block", Input.mouseX, Input.mouseY);
 			if (clickedEntity != null)
+			{
 				_assemblyLine.consumeBlockForEntity(clickedEntity);
+				_spawnTimer.reset();
+				_assemblyLine.spawnNewBlocks();
+				_tapCooldown = true;
+				_tapCooldownTimer.paused = false;
+			}
 		}
 	}
 	
@@ -66,9 +73,17 @@ class CMGameplayScene extends EXTScene
 		_assemblyLine.spawnNewBlocks();
 	}
 	
+	public function tapTimerCallback(timer:EXTTimer):Void
+	{
+		_tapCooldown = false;
+		_tapCooldownTimer.paused = true;
+	}
+	
 	/**
-	 * Private
+	 * Private 
 	 */
 	var _assemblyLine:CMAssemblyLine;
 	var _spawnTimer:EXTTimer;
+	var _tapCooldownTimer:EXTTimer;
+	var _tapCooldown:Bool;
 }

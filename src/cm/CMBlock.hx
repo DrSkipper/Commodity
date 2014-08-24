@@ -47,7 +47,7 @@ class CMBlock
 	public function set_level(l:Int):Int
 	{
 		level = l;
-		this.size = cast (CMConstants.BASE_OBJECT_GRID_SPACES + ((level - 1) * CMConstants.BASE_OBJECT_GRID_SPACES / 4));
+		this.size = cast (CMConstants.BASE_OBJECT_GRID_SPACES + ((level - 1) * CMConstants.BASE_OBJECT_GRID_SPACES / 8));
 		return level;
 	}
 	
