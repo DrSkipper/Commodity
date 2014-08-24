@@ -35,8 +35,8 @@ class CMAssemblyLine
 	
 	public function spawnNewBlocks():Void
 	{
-		var topBlock:CMBlock = new CMBlock(0, 1, _sprite.x, _sprite.y - _pixelLength / 2, this);
-		var bottomBlock:CMBlock = new CMBlock(0, 1, _sprite.x, _sprite.y + _pixelLength / 2, this);
+		var topBlock:CMBlock = new CMBlock(HXP.rand(3), 1, _sprite.x, _sprite.y - _pixelLength / 2, this);
+		var bottomBlock:CMBlock = new CMBlock(HXP.rand(3), 1, _sprite.x, _sprite.y + _pixelLength / 2, this);
 		this.addBlocks(topBlock, bottomBlock);
 	}
 	

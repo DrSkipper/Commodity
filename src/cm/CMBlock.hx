@@ -29,7 +29,7 @@ class CMBlock
 		this.size = cast (CMConstants.BASE_OBJECT_GRID_SPACES + ((level - 1) * CMConstants.BASE_OBJECT_GRID_SPACES / 2));
 		this.assemblyLine = assemblyLine;
 		
-		var color:EXTColor = CMLocalData.sharedInstance().currentColorPalette.colorForIndex(CMColorPalette.INDEX_BLOCK_1);
+		var color:EXTColor = CMLocalData.sharedInstance().currentColorPalette.colorForIndex(CMColorPalette.INDEX_BLOCK_1 + blockType);
 		var pixelLength:Float = this.size * CMConstants.GRID_SPACE_HEIGHT;
 		_sprite = new CMObjectSprite(spawnX, spawnY, CMConstants.ASSEMBLY_LINE_WIDTH, pixelLength, color, CMConstants.ASSEMBLY_LINE_OBJECT_BUFFER);
 		HXP.scene.add(_sprite);
