@@ -52,8 +52,14 @@ class CMAssemblyLine
 		var success:Bool = this.makeRoomForBlock(topBlock, true);
 		_blocks.unshift(topBlock);
 		
+		trace("Added top block with success: " + success);
+		this.printLine();
+		
 		success = this.makeRoomForBlock(bottomBlock, false) && success;
 		_blocks.push(bottomBlock);
+		
+		trace("Added bottom block with success: " + success);
+		this.printLine();
 		
 		for (i in 0..._blocks.length)
 		{
@@ -94,7 +100,7 @@ class CMAssemblyLine
 		
 		// If there's a collision, try to move the colliding object
 		if (collidingBlock != null)
-		{
+		{/*
 			// First check if we can combine with this block (it's the same type)
 			if (block.blockType == collidingBlock.blockType)
 			{
@@ -131,7 +137,7 @@ class CMAssemblyLine
 				
 				// Start trying to make room from this same position again with the bigger block
 				return this.makeRoomForBlock(block, bubbleDown);
-			}
+			}*/
 			
 			// Otherwise, continue bubbling blocks up or down to make room
 			if (bubbleDown)
@@ -174,7 +180,7 @@ class CMAssemblyLine
 			{
 				var block:CMBlock = _blocks[i];
 				
-				if (block == ignoreBlock)
+				if (block.blockId == ignoreBlock.blockId)
 					continue;
 				
 				if (gridSpace >= block.gridSpace && gridSpace < block.gridSpace + block.size)
@@ -187,7 +193,7 @@ class CMAssemblyLine
 			{
 				var block:CMBlock = _blocks[_blocks.length - (i + 1)];
 				
-				if (block == ignoreBlock)
+				if (block.blockId == ignoreBlock.blockId)
 					continue;
 					
 				if (gridSpace >= block.gridSpace && gridSpace < block.gridSpace + block.size)
@@ -214,6 +220,37 @@ class CMAssemblyLine
 				block.consume();
 				break;
 			}
+		}
+		
+		trace("block consumed");
+		this.printLine();
+	}
+	
+	public function printLine():Void
+	{
+		trace("line: (" + _blocks.length + " blocks total)");
+		for (i in 0...(CMConstants.ASSEMBLY_LINE_LENGTH * CMConstants.BASE_OBJECT_GRID_SPACES))
+		{
+			var space:String = "|";
+			var found:Bool = false;
+			
+			for (j in 0..._blocks.length)
+			{
+				if (i >= _blocks[j].gridSpace && i < _blocks[j].gridSpace + _blocks[j].size)
+				{
+					if (!found)
+					{
+						found = true;
+						space += "" + j;
+					}
+					else
+					{
+						space += ", " + j;
+					}
+				}
+			}
+			
+			trace(space);
 		}
 	}
 	

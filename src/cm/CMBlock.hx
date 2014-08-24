@@ -17,18 +17,22 @@ import cm.local.CMColorPalette;
  */
 class CMBlock
 {
+	public static var CM_BLOCK_ID_COUNT:Int = 0;
+
 	public var gridSpace:Int;
 	public var size:Int;
 	public var level(default, set):Int;
 	public var blockType:Int;
 	public var assemblyLine:CMAssemblyLine;
 	public var sprite(get, never):CMObjectSprite;
+	public var blockId:Int;
 	
 	public function new(blockType:Int, level:Int, spawnX:Float = 0.0, spawnY:Float = 0.0, assemblyLine:CMAssemblyLine = null) 
 	{
 		this.blockType = blockType;
 		this.level = level;
 		this.assemblyLine = assemblyLine;
+		this.blockId = CM_BLOCK_ID_COUNT++;
 		
 		var color:EXTColor = CMLocalData.sharedInstance().currentColorPalette.colorForIndex(CMColorPalette.INDEX_BLOCK_1 + blockType);
 		var pixelLength:Float = this.size * CMConstants.GRID_SPACE_HEIGHT;
