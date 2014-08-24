@@ -24,7 +24,7 @@ class CMConstants
 	public static inline var BASE_OBJECT_GRID_SPACES = 8;
 	public static inline var ASSEMBLY_LINE_WIDTH = 200;
 	public static inline var ASSEMBLY_LINE_OBJECT_BUFFER = 16; // pixels
-	public static inline var ASSEMBLY_LINE_LENGTH = 5; // Number of base objects that fit in an assembly line
+	public static inline var ASSEMBLY_LINE_LENGTH = 7; // Number of base objects that fit in an assembly line
 }
 
 // L->C->$->C

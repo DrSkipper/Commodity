@@ -37,7 +37,7 @@ class CMGameplayScene extends EXTScene
 		_assemblyLine = new CMAssemblyLine(2, CMConstants.ASSEMBLY_LINE_LENGTH);
 		_assemblyLine.spawnNewBlocks();
 		
-		_spawnTimer = EXTTimer.createTimer(1.0, true, spawnTimerCallback);
+		_spawnTimer = EXTTimer.createTimer(2.0, true, spawnTimerCallback);
 	}
 	
 	override public function update():Void

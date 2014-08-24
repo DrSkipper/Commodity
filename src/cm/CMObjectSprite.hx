@@ -68,6 +68,18 @@ class CMObjectSprite extends Entity
 		this.applySpriteState(_stateQueue.currentState);
 	}
 	
+	override public function removed():Void
+	{
+		super.removed();
+		_stateQueue.clearTweens();
+		_stateQueue = null;
+	}
+	
+	public function setColor(color:EXTColor)
+	{
+		_image.color = color.webColor;
+	}
+	
 	/**
 	 * Private
 	 */

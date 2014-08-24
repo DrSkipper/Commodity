@@ -18,7 +18,7 @@ class CMBlock
 {
 	public var gridSpace:Int;
 	public var size:Int;
-	public var level:Int;
+	public var level(default, set):Int;
 	public var blockType:Int;
 	public var assemblyLine:CMAssemblyLine;
 	
@@ -26,7 +26,6 @@ class CMBlock
 	{
 		this.blockType = blockType;
 		this.level = level;
-		this.size = cast (CMConstants.BASE_OBJECT_GRID_SPACES + ((level - 1) * CMConstants.BASE_OBJECT_GRID_SPACES / 2));
 		this.assemblyLine = assemblyLine;
 		
 		var color:EXTColor = CMLocalData.sharedInstance().currentColorPalette.colorForIndex(CMColorPalette.INDEX_BLOCK_1 + blockType);
@@ -40,6 +39,18 @@ class CMBlock
 		var point:Point = this.assemblyLine.pointForBlock(this);
 		var nextState:CMObjectSpriteState = new CMObjectSpriteState(point.x, point.y, CMConstants.ASSEMBLY_LINE_WIDTH, this.size * CMConstants.GRID_SPACE_HEIGHT);
 		_sprite.appendState(nextState);
+	}
+	
+	public function set_level(l:Int):Int
+	{
+		level = l;
+		this.size = cast (CMConstants.BASE_OBJECT_GRID_SPACES + ((level - 1) * CMConstants.BASE_OBJECT_GRID_SPACES / 4));
+		return level;
+	}
+	
+	public function remove():Void
+	{
+		HXP.scene.remove(_sprite);
 	}
 	
 	/**

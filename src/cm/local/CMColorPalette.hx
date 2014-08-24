@@ -16,7 +16,7 @@ class CMColorPalette
 	 public static inline var INDEX_BLOCK_1:Int = 1;
 	 public static inline var INDEX_BLOCK_2:Int = 2;
 	 public static inline var INDEX_BLOCK_3:Int = 3;
-	// public static inline var INDEX_ENEMY_SHIP_1:Int = 4;
+	 public static inline var INDEX_DEATH_COLOR:Int = 4;
 	// public static inline var INDEX_ENEMY_SHIP_2:Int = 5;
 	// public static inline var INDEX_ENEMY_SHIP_3:Int = 6;
 	// public static inline var INDEX_ENEMY_SHIP_4:Int = 7;

@@ -35,9 +35,12 @@ class CMAssemblyLine
 	
 	public function spawnNewBlocks():Void
 	{
-		var topBlock:CMBlock = new CMBlock(HXP.rand(3), 1, _sprite.x, _sprite.y - _pixelLength / 2, this);
-		var bottomBlock:CMBlock = new CMBlock(HXP.rand(3), 1, _sprite.x, _sprite.y + _pixelLength / 2, this);
-		this.addBlocks(topBlock, bottomBlock);
+		if (!_dead)
+		{
+			var topBlock:CMBlock = new CMBlock(HXP.rand(3), 1, _sprite.x, _sprite.y - _pixelLength / 2, this);
+			var bottomBlock:CMBlock = new CMBlock(HXP.rand(3), 1, _sprite.x, _sprite.y + _pixelLength / 2, this);
+			this.addBlocks(topBlock, bottomBlock);
+		}
 	}
 	
 	public function addBlocks(topBlock:CMBlock, bottomBlock:CMBlock):Void
@@ -46,28 +49,33 @@ class CMAssemblyLine
 		bottomBlock.gridSpace = _length * CMConstants.BASE_OBJECT_GRID_SPACES - bottomBlock.size;
 		
 		var success:Bool = this.makeRoomForBlock(topBlock, true);
-		if (success)
-		{
-			_blocks.unshift(topBlock);
-			success = this.makeRoomForBlock(bottomBlock, false);
-			
-			if (success)
-				_blocks.push(bottomBlock);
-		}
 		
-		if (success)
-		{
+		_blocks.unshift(topBlock);
+		success = this.makeRoomForBlock(bottomBlock, false) && success;
+		_blocks.push(bottomBlock);
+		
+		//if (success)
+		//{
+			//_blocks.unshift(topBlock);
+			//success = this.makeRoomForBlock(bottomBlock, false);
+			//
+			//if (success)
+				//_blocks.push(bottomBlock);
+		//}
+		//
+		//if (success)
+		//{
 			// Loop through blocks and call moveTo their positions
 			for (i in 0..._blocks.length)
 			{
 				_blocks[i].animateToPosition();
 			}
-		}
-		else
-		{
+		//}
+		//else
+		//{
+		if (!success) //
 			this.killLine();
-		}
-		
+		//}
 	}
 	
 	// Returns false if room cannot be made
@@ -101,6 +109,46 @@ class CMAssemblyLine
 		// If there's a collision, try to move the colliding object
 		if (collidingBlock != null)
 		{
+			// First check if we can combine with this block (it's the same type)
+			if (block.blockType == collidingBlock.blockType)
+			{
+				trace("ok");
+				if (bubbleDown)
+				{
+					++block.level;
+					
+					if (block.gridSpace + block.size > _length * CMConstants.BASE_OBJECT_GRID_SPACES)
+						return false;
+				}
+				else
+				{
+					var oldSize:Int = block.size;
+					++block.level;
+					var newSize:Int = block.size;
+					block.gridSpace -= newSize - oldSize;
+					
+					if (block.gridSpace < 0)
+						return false;
+				}
+				
+				// Replace the collided block with this one in the array
+				_blocks.remove(block);
+				i = 0;
+				while (i < _blocks.length)
+				{
+					if (_blocks[i] == collidingBlock)
+						break;
+					++i;
+				}
+				_blocks.insert(i, block);
+				_blocks.remove(collidingBlock);
+				collidingBlock.remove();
+				
+				// Start trying to make room from this same position again with the bigger block
+				return this.makeRoomForBlock(block, bubbleDown);
+			}
+			
+			// Otherwise, continue bubbling blocks up or down to make room
 			if (bubbleDown)
 			{
 				var newGridSpace:Int = block.gridSpace + block.size;
@@ -114,7 +162,7 @@ class CMAssemblyLine
 			}
 			else
 			{
-				var newGridSpace:Int = block.gridSpace - collidingBlock.size - 1;
+				var newGridSpace:Int = block.gridSpace - collidingBlock.size;
 				if (newGridSpace < 0)
 				{
 					trace("shiiiii");
@@ -161,7 +209,8 @@ class CMAssemblyLine
 	
 	public function killLine():Void
 	{
-		
+		_dead = true;
+		_sprite.setColor(CMLocalData.sharedInstance().currentColorPalette.colorForIndex(CMColorPalette.INDEX_DEATH_COLOR));
 	}
 	
 	/**
@@ -171,4 +220,5 @@ class CMAssemblyLine
 	private var _pixelLength:Float;
 	private var _sprite:CMObjectSprite;
 	private var _blocks:Array<CMBlock>;
+	private var _dead:Bool;
 }
