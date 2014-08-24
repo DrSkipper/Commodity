@@ -4,6 +4,7 @@ import com.haxepunk.Entity;
 import com.haxepunk.Graphic;
 import com.haxepunk.Mask;
 import com.haxepunk.graphics.Image;
+import extendedhxpunk.ext.EXTColor;
 import cm.local.CMLocalData;
 import cm.local.CMColorPalette;
 
@@ -13,15 +14,18 @@ import cm.local.CMColorPalette;
  */
 class CMObjectSprite extends Entity
 {
-	public function new(x:Float, y:Float, w:Float, h:Float) 
+	public var state:CMObjectSpriteState;
+	
+	public function new(x:Float, y:Float, w:Float, h:Float, color:EXTColor, buffer:Float = 0.0) 
 	{
 		super();
 		_image = new Image("gfx/solid.png");
-		_image.color = CMLocalData.sharedInstance().currentColorPalette.colorForIndex(CMColorPalette.INDEX_BACKGROUND_2).webColor;
+		_image.color = color.webColor;
 		this.graphic = _image;
+		_buffer = buffer;
 		
 		var initialState:CMObjectSpriteState = new CMObjectSpriteState(x, y, 2.0, 2.0);
-		var targetState:CMObjectSpriteState = new CMObjectSpriteState(x, y, w, h);
+		var targetState:CMObjectSpriteState = new CMObjectSpriteState(x, y, w - buffer, h - buffer);
 		var targetDestination:CMObjectSpriteDestination = new CMObjectSpriteDestination();
 		targetDestination.state = targetState;
 		targetDestination.duration = 0.2;
@@ -29,6 +33,7 @@ class CMObjectSprite extends Entity
 		_stateQueue = new CMSpriteDestinationQueue(this, initialState);
 		this.applySpriteState(initialState);
 		_stateQueue.addDestination(targetDestination);
+		this.state = targetState;
 	}
 	
 	public function applySpriteState(state:CMObjectSpriteState):Void
@@ -44,6 +49,18 @@ class CMObjectSprite extends Entity
 		this.centerOrigin();
 	}
 	
+	public function appendState(state:CMObjectSpriteState):Void
+	{
+		state.w -= _buffer;
+		state.h -= _buffer;
+		
+		var nextDestination:CMObjectSpriteDestination = new CMObjectSpriteDestination();
+		nextDestination.state = state;
+		nextDestination.duration = 0.4;
+		_stateQueue.addDestination(nextDestination);
+		this.state = state;
+	}
+	
 	override public function update():Void
 	{
 		super.update();
@@ -56,4 +73,5 @@ class CMObjectSprite extends Entity
 	 */
 	private var _image:Image;
 	private var _stateQueue:CMSpriteDestinationQueue;
+	private var _buffer:Float;
 }

@@ -23,8 +23,10 @@ class CMConstants
 
 	public static inline var BASE_OBJECT_GRID_SPACES = 8;
 	public static inline var ASSEMBLY_LINE_WIDTH = 200;
-	public static inline var ASSEMBLY_LINE_OBJECT_BUFFER = 1; // grid spaces
+	public static inline var ASSEMBLY_LINE_OBJECT_BUFFER = 10; // pixels
 	public static inline var ASSEMBLY_LINE_LENGTH = 5; // Number of base objects that fit in an assembly line
 }
 
 // L->C->$->C
+// Ludum Dare 30 game
+// I've been thinking a bunch about the commodification of labor recently so this game is kinda about that and maybe kinda sorta relates to the theme #LD48

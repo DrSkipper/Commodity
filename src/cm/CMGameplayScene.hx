@@ -34,6 +34,7 @@ class CMGameplayScene extends EXTScene
 		
 		// Add assembly lines
 		_assemblyLine = new CMAssemblyLine(2, CMConstants.ASSEMBLY_LINE_LENGTH);
+		_assemblyLine.spawnNewBlocks();
 	}
 	
 	public function backButtonCallback(args:Array<Dynamic>):Void

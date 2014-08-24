@@ -12,10 +12,10 @@ import extendedhxpunk.ext.EXTColor;
  */
 class CMColorPalette
 {
-	// public static inline var INDEX_PLAYER_SHIP_1:Int = 0;
-	// public static inline var INDEX_PLAYER_SHIP_2:Int = 1;
-	// public static inline var INDEX_PLAYER_SHIP_3:Int = 2;
-	// public static inline var INDEX_PLAYER_SHIP_4:Int = 3;
+	 public static inline var INDEX_BACKGROUND_3:Int = 0;
+	 public static inline var INDEX_BLOCK_1:Int = 1;
+	 public static inline var INDEX_BLOCK_2:Int = 2;
+	 public static inline var INDEX_BLOCK_3:Int = 3;
 	// public static inline var INDEX_ENEMY_SHIP_1:Int = 4;
 	// public static inline var INDEX_ENEMY_SHIP_2:Int = 5;
 	// public static inline var INDEX_ENEMY_SHIP_3:Int = 6;
