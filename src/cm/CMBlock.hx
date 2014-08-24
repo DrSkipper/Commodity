@@ -26,7 +26,7 @@ class CMBlock
 	{
 		this.blockType = blockType;
 		this.level = level;
-		this.size = cast (CMConstants.BASE_OBJECT_GRID_SPACES + (level - 1) * CMConstants.BASE_OBJECT_GRID_SPACES / 2);
+		this.size = cast (CMConstants.BASE_OBJECT_GRID_SPACES + ((level - 1) * CMConstants.BASE_OBJECT_GRID_SPACES / 2));
 		this.assemblyLine = assemblyLine;
 		
 		var color:EXTColor = CMLocalData.sharedInstance().currentColorPalette.colorForIndex(CMColorPalette.INDEX_BLOCK_1);

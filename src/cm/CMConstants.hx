@@ -18,12 +18,12 @@ class CMConstants
 	public static inline var PLAY_SPACE_WIDTH:Int = 1024;
 	public static inline var PLAY_SPACE_HEIGHT:Int = 640;
 
-	public static inline var GRID_SPACE_WIDTH:Int = 10;
-	public static inline var GRID_SPACE_HEIGHT:Int = 10;
+	public static inline var GRID_SPACE_WIDTH:Int = 8;
+	public static inline var GRID_SPACE_HEIGHT:Int = 8;
 
 	public static inline var BASE_OBJECT_GRID_SPACES = 8;
 	public static inline var ASSEMBLY_LINE_WIDTH = 200;
-	public static inline var ASSEMBLY_LINE_OBJECT_BUFFER = 10; // pixels
+	public static inline var ASSEMBLY_LINE_OBJECT_BUFFER = 16; // pixels
 	public static inline var ASSEMBLY_LINE_LENGTH = 5; // Number of base objects that fit in an assembly line
 }
 

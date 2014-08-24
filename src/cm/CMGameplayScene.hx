@@ -6,6 +6,7 @@ import extendedhxpunk.ext.EXTScene;
 import extendedhxpunk.ext.EXTOffsetType;
 import extendedhxpunk.ext.EXTUtility;
 import extendedhxpunk.ui.UIView;
+import extendedhxpunk.ext.EXTTimer;
 import cm.ui.JVExampleMenuButton;
 
 /**
@@ -35,15 +36,30 @@ class CMGameplayScene extends EXTScene
 		// Add assembly lines
 		_assemblyLine = new CMAssemblyLine(2, CMConstants.ASSEMBLY_LINE_LENGTH);
 		_assemblyLine.spawnNewBlocks();
+		
+		_spawnTimer = EXTTimer.createTimer(1.0, true, spawnTimerCallback);
+	}
+	
+	override public function update():Void
+	{
+		super.update();
 	}
 	
 	public function backButtonCallback(args:Array<Dynamic>):Void
 	{
+		_spawnTimer.invalidate();
+		_spawnTimer = null;
 		 HXP.scene = new MainScene();
+	}
+	
+	public function spawnTimerCallback(timer:EXTTimer):Void
+	{
+		_assemblyLine.spawnNewBlocks();
 	}
 	
 	/**
 	 * Private
 	 */
 	var _assemblyLine:CMAssemblyLine;
+	var _spawnTimer:EXTTimer;
 }

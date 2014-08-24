@@ -35,8 +35,8 @@ class CMAssemblyLine
 	
 	public function spawnNewBlocks():Void
 	{
-		var topBlock:CMBlock = new CMBlock(0, 0, _sprite.x, _sprite.y - _pixelLength / 2, this);
-		var bottomBlock:CMBlock = new CMBlock(0, 0, _sprite.x, _sprite.y + _pixelLength / 2, this);
+		var topBlock:CMBlock = new CMBlock(0, 1, _sprite.x, _sprite.y - _pixelLength / 2, this);
+		var bottomBlock:CMBlock = new CMBlock(0, 1, _sprite.x, _sprite.y + _pixelLength / 2, this);
 		this.addBlocks(topBlock, bottomBlock);
 	}
 	
@@ -88,11 +88,14 @@ class CMAssemblyLine
 			end = block.gridSpace - 1;
 		}
 		
-		for (i in start...end)
+		var i:Int = start;
+		while (i != end)
 		{
-			collidingBlock = this.getBlockAtGridSpace(i, bubbleDown);
+			collidingBlock = this.getBlockAtGridSpace(i, bubbleDown, block);
 			if (collidingBlock != null)
 				break;
+			
+			i += bubbleDown ? 1 : -1;
 		}
 		
 		// If there's a collision, try to move the colliding object
@@ -101,7 +104,7 @@ class CMAssemblyLine
 			if (bubbleDown)
 			{
 				var newGridSpace:Int = block.gridSpace + block.size;
-				if (newGridSpace >= _length)
+				if (newGridSpace >= _length * CMConstants.BASE_OBJECT_GRID_SPACES)
 				{
 					trace("fuuuuu");
 					return false;
@@ -125,13 +128,17 @@ class CMAssemblyLine
 		return true;
 	}
 	
-	public function getBlockAtGridSpace(gridSpace:Int, fromTop:Bool):CMBlock
+	public function getBlockAtGridSpace(gridSpace:Int, fromTop:Bool, ignoreBlock:CMBlock):CMBlock
 	{
 		if (fromTop)
 		{
 			for (i in 0..._blocks.length)
 			{
-				var block:CMBlock = _blocks[_blocks.length - (i + 1)];
+				var block:CMBlock = _blocks[i];
+				
+				if (block == ignoreBlock)
+					continue;
+				
 				if (gridSpace >= block.gridSpace && gridSpace < block.gridSpace + block.size)
 					return block;
 			}
@@ -140,7 +147,11 @@ class CMAssemblyLine
 		{
 			for (i in 0..._blocks.length)
 			{
-				var block:CMBlock = _blocks[i];
+				var block:CMBlock = _blocks[_blocks.length - (i + 1)];
+				
+				if (block == ignoreBlock)
+					continue;
+					
 				if (gridSpace >= block.gridSpace && gridSpace < block.gridSpace + block.size)
 					return block;
 			}
