@@ -51,14 +51,17 @@ class CMObjectSprite extends Entity
 	
 	public function appendState(state:CMObjectSpriteState):Void
 	{
-		state.w -= _buffer;
-		state.h -= _buffer;
-		
-		var nextDestination:CMObjectSpriteDestination = new CMObjectSpriteDestination();
-		nextDestination.state = state;
-		nextDestination.duration = 0.4;
-		_stateQueue.addDestination(nextDestination);
-		this.state = state;
+		if (_stateQueue != null)
+		{
+			state.w -= _buffer;
+			state.h -= _buffer;
+			
+			var nextDestination:CMObjectSpriteDestination = new CMObjectSpriteDestination();
+			nextDestination.state = state;
+			nextDestination.duration = 0.4;
+			_stateQueue.addDestination(nextDestination);
+			this.state = state;
+		}
 	}
 	
 	override public function update():Void

@@ -1,7 +1,9 @@
 package cm;
 
+import com.haxepunk.Entity;
 import flash.geom.Point;
 import com.haxepunk.HXP;
+import com.haxepunk.utils.Input;
 import extendedhxpunk.ext.EXTScene;
 import extendedhxpunk.ext.EXTOffsetType;
 import extendedhxpunk.ext.EXTUtility;
@@ -37,12 +39,19 @@ class CMGameplayScene extends EXTScene
 		_assemblyLine = new CMAssemblyLine(2, CMConstants.ASSEMBLY_LINE_LENGTH);
 		_assemblyLine.spawnNewBlocks();
 		
-		_spawnTimer = EXTTimer.createTimer(2.0, true, spawnTimerCallback);
+		_spawnTimer = EXTTimer.createTimer(CMConstants.BLOCK_SPAWN_COOLDOWN, true, spawnTimerCallback);
 	}
 	
 	override public function update():Void
 	{
 		super.update();
+		
+		if (Input.mousePressed)
+		{
+			var clickedEntity:Entity = this.collidePoint("block", Input.mouseX, Input.mouseY);
+			if (clickedEntity != null)
+				_assemblyLine.consumeBlockForEntity(clickedEntity);
+		}
 	}
 	
 	public function backButtonCallback(args:Array<Dynamic>):Void

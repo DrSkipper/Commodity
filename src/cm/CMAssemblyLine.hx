@@ -1,5 +1,6 @@
 package cm;
 
+import com.haxepunk.Entity;
 import flash.geom.Point;
 import com.haxepunk.HXP;
 import extendedhxpunk.ext.EXTColor;
@@ -37,8 +38,8 @@ class CMAssemblyLine
 	{
 		if (!_dead)
 		{
-			var topBlock:CMBlock = new CMBlock(HXP.rand(3), 1, _sprite.x, _sprite.y - _pixelLength / 2, this);
-			var bottomBlock:CMBlock = new CMBlock(HXP.rand(3), 1, _sprite.x, _sprite.y + _pixelLength / 2, this);
+			var topBlock:CMBlock = new CMBlock(HXP.rand(CMConstants.BLOCK_TYPES), 1, _sprite.x, _sprite.y - _pixelLength / 2, this);
+			var bottomBlock:CMBlock = new CMBlock(HXP.rand(CMConstants.BLOCK_TYPES), 1, _sprite.x, _sprite.y + _pixelLength / 2, this);
 			this.addBlocks(topBlock, bottomBlock);
 		}
 	}
@@ -189,6 +190,20 @@ class CMAssemblyLine
 	{
 		_dead = true;
 		_sprite.setColor(CMLocalData.sharedInstance().currentColorPalette.colorForIndex(CMColorPalette.INDEX_DEATH_COLOR));
+	}
+	
+	public function consumeBlockForEntity(entity:Entity):Void
+	{
+		for (i in 0..._blocks.length)
+		{
+			var block:CMBlock = _blocks[i];
+			if (block.sprite == entity)
+			{
+				block.consume();
+				_blocks.remove(block);
+				break;
+			}
+		}
 	}
 	
 	/**

@@ -25,6 +25,9 @@ class CMConstants
 	public static inline var ASSEMBLY_LINE_WIDTH = 200;
 	public static inline var ASSEMBLY_LINE_OBJECT_BUFFER = 16; // pixels
 	public static inline var ASSEMBLY_LINE_LENGTH = 7; // Number of base objects that fit in an assembly line
+	
+	public static inline var BLOCK_TYPES:Int = 3;
+	public static inline var BLOCK_SPAWN_COOLDOWN:Float = 3.0;
 }
 
 // L->C->$->C
