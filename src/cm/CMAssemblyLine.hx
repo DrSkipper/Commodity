@@ -229,9 +229,11 @@ class CMAssemblyLine
 	public function printLine():Void
 	{
 		trace("line: (" + _blocks.length + " blocks total)");
+		
+#if debug
 		for (i in 0...(CMConstants.ASSEMBLY_LINE_LENGTH * CMConstants.BASE_OBJECT_GRID_SPACES))
 		{
-			var space:String = "|";
+			var space:String = "| ";
 			var found:Bool = false;
 			
 			for (j in 0..._blocks.length)
@@ -252,6 +254,7 @@ class CMAssemblyLine
 			
 			trace(space);
 		}
+#end
 	}
 	
 	/**
